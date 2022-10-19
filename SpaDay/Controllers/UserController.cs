@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SpaDay.Data;
 using SpaDay.Models;
+using SpaDay.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,9 +19,22 @@ namespace SpaDay.Controllers
             return View();
         }
 
-        public IActionResult Add()
+        public IActionResult Add(AddUserViewModel addUserViewModel)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                User newUser = new User
+                {
+                    Username = addUserViewModel.Username,
+                    Password = addUserViewModel.Password,
+                    Email = addUserViewModel.Email,
+                };
+
+                UserData.Add(newUser);
+
+                return Redirect("/Users");
+            }
+            return View(addUserViewModel);
         }
 
         [HttpPost]
