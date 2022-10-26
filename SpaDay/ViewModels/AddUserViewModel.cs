@@ -17,7 +17,7 @@ namespace SpaDay.ViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Verify Password is required")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "Sorry, but the given password is too short. Passwords must be at least 6 characters 
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Verification of password is required")] 
         public string VerifyPassword { get; set; }
 
 
